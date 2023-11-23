@@ -1,0 +1,39 @@
+Umain kareem
+S23BSSEN1E02023
+class Course:
+    def _init_(self, course_code, course_name):
+        self.course_code = course_code
+        self.course_name = course_name
+
+class Semester:
+    def _init_(self, semester_number):
+        self.semester_number = semester_number
+        self.courses = []
+
+    def add_course(self, course):
+        self.courses.append(course)
+
+class SchemeOfStudyManager:
+    def _init_(self):
+        self.semesters = []
+
+    def add_semester(self, semester):
+        self.semesters.append(semester)
+
+    def display_scheme(self):
+        for semester in self.semesters:
+            print(f"\nSemester {semester.semester_number}:")
+            for course in semester.courses:
+                print(f"- {course.course_code}: {course.course_name}")
+
+    def enroll_student(self, semester_number, course_code):
+        for semester in self.semesters:
+            if semester.semester_number == semester_number:
+                for course in semester.courses:
+                    if course.course_code == course_code:
+                        print(f"Enrolled in {course.course_name} ({course.course_code}) for Semester {semester_number}.")
+                        # Add additional logic for student enrollment if needed
+                        return
+                print(f"Error: Course with code {course_code} not found in Semester {semester_number}.")
+                return
+        print(f"Error: Semester {semester_number} not found.")
